@@ -8,7 +8,6 @@ wl = network.WLAN()
 
 # timer setup
 tim = pyb.Timer(4, freq=2)  # create a timer object using timer 4, trigger at 2Hz
-tim.callback(lambda t: check_wifi_connection())
 
 # LED setup
 red_led = LED(1)
@@ -23,8 +22,9 @@ def check_wifi_connection():
     grn_led.off()
     red_led.on()
 
+
 # timer callback setup
-# tim.callback(check_wifi_connection())
+tim.callback(lambda t: check_wifi_connection())
 
 wl.active(1)            # bring up the interface
 wl.config('mac')        # get the MAC address
